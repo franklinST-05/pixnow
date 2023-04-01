@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 import { IUserRepository } from "../../../repositories/user/IUserRepository";
 import { AuthUserType, AuthUserValidator } from "./AuthUserValidator";
+
 import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
 
 class AuthUserService {
     private readonly repository;
@@ -15,7 +18,8 @@ class AuthUserService {
         const existsUser = await this.repository.findByEmail(validUser.email);
         if(!existsUser) throw new Error("User not found");
 
-        if(validUser.password!== existsUser.password) throw new Error("Invalid password");
+        const comparePass = await bcrypt.compare(validUser.password, existsUser.password);
+        if(!comparePass) throw new Error("Invalid password");
 
         const token = jwt.sign({
             email: existsUser.email,

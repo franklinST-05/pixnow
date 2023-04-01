@@ -1,4 +1,4 @@
-import { prismaClient } from "../../../settings/prisma/client";
+import { prismaClient } from "../../../../settings/prisma/client";
 import { FinanceKeyType } from "../../_types";
 import { IFinanceKeyRepository } from "../IFinanceKeyRepository";
 

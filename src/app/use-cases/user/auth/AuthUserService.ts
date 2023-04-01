@@ -32,7 +32,7 @@ class AuthUserService {
 
         return {
             token: token,
-            firsName: existsUser.firstName,
+            firstName: existsUser.firstName,
             lastName: existsUser.lastName,
             email: existsUser.email,
         };

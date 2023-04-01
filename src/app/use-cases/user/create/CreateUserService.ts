@@ -13,14 +13,18 @@ class CreateUserService {
 
     async execute(user: CreateUserType) {
         const validUser = CreateUserValidator.parse(user);
-        const data = await this.repository.create({
+        const createdUser = await this.repository.create({
             firstName: validUser.firstName,
             lastName: validUser.lastName,
             email: validUser.email,
             password: await bcrypt.hash(validUser.password, 8),
         } as UserType);
 
-        return data;
+        return {
+            firstName: createdUser.firstName,
+            lastName: createdUser.lastName,
+            email: createdUser.email,
+        };
     }
 
     

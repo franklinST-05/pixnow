@@ -1,4 +1,4 @@
-import { server } from "./configs/server";
+import { server } from "./settings/server";
 
 const SERVER_PORT = process.env.SERVER_PORT ?? 8080;
 

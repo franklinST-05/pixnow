@@ -3,6 +3,7 @@ import { CreateFinanceKeyService } from "./create/CreateFinanceKeyService";
 import { FinanceKeyPrismaRepository } from "../../repositories/finance-key/impls/FinanceKeyPrismaRepository";
 import { DeleteFinanceKeyService } from "./delete/DeleteFinanceKeyService";
 import { FindAllFinanceKeyService } from "./find-all/FindAllFinanceKeyService";
+import { UpdateFinanceKeyService } from "./update/UpdateFinanceKeyService";
 
 const repository  = new FinanceKeyPrismaRepository();
 
@@ -29,6 +30,13 @@ class FinanceKeyController {
     async findAll(req: Request, res: Response) {
         const findAllFinanceKey  = new FindAllFinanceKeyService(repository);
         const data = await findAllFinanceKey.execute({ userId: req.auth_user.id });
+
+        return res.status(200).json(data);
+    }
+
+    async update(req: Request, res:Response) {
+        const updateFinanceKey = new UpdateFinanceKeyService(repository);
+        const data = await updateFinanceKey.execute(req.body);
 
         return res.status(200).json(data);
     }

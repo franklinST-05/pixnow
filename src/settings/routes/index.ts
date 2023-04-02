@@ -13,5 +13,6 @@ const financeKeyController = new FinanceKeyController();
 routes.get("/key", isAuthenticated, financeKeyController.findAll);
 routes.post("/key", isAuthenticated, financeKeyController.create);
 routes.delete("/key", isAuthenticated, financeKeyController.delete);
+routes.put("/key", isAuthenticated, financeKeyController.update);
 
 export { routes };

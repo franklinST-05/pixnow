@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { CreateFinanceKeyService } from "./create/CreateFinanceKeyService";
 import { FinanceKeyPrismaRepository } from "../../repositories/finance-key/impls/FinanceKeyPrismaRepository";
 import { DeleteFinanceKeyService } from "./delete/DeleteFinanceKeyService";
+import { FindAllFinanceKeyService } from "./find-all/FindAllFinanceKeyService";
 
 const repository  = new FinanceKeyPrismaRepository();
 
@@ -21,6 +22,13 @@ class FinanceKeyController {
     async delete(req: Request, res:Response) {
         const deleteFinanceKey = new DeleteFinanceKeyService(repository);
         const data = await deleteFinanceKey.execute(req.body);
+
+        return res.status(200).json(data);
+    }
+
+    async findAll(req: Request, res: Response) {
+        const findAllFinanceKey  = new FindAllFinanceKeyService(repository);
+        const data = await findAllFinanceKey.execute({ userId: req.auth_user.id });
 
         return res.status(200).json(data);
     }

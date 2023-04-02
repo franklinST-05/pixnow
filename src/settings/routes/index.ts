@@ -10,6 +10,7 @@ routes.post("/user", userController.create);
 routes.post("/user/auth", userController.auth);
 
 const financeKeyController = new FinanceKeyController();
+routes.get("/key", isAuthenticated, financeKeyController.findAll);
 routes.post("/key", isAuthenticated, financeKeyController.create);
 routes.delete("/key", isAuthenticated, financeKeyController.delete);
 

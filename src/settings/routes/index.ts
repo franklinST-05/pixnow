@@ -6,7 +6,7 @@ import { isAuthenticated } from "../../app/utils/middlewares/isAuthenticated";
 const routes = Router();
 
 const userController = new UserController();
-routes.put("/user", userController.create);
+routes.post("/user", userController.create);
 routes.post("/user/auth", userController.auth);
 
 const financeKeyController = new FinanceKeyController();

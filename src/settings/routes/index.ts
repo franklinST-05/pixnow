@@ -11,5 +11,6 @@ routes.post("/user/auth", userController.auth);
 
 const financeKeyController = new FinanceKeyController();
 routes.post("/key", isAuthenticated, financeKeyController.create);
+routes.delete("/key", isAuthenticated, financeKeyController.delete);
 
 export { routes };

@@ -12,7 +12,7 @@ class FinanceKeyController {
         const data = await createFinanceKey.execute({
             key: req.body.key,
             description: req.body.description,
-            userId: req.body.userId,
+            userId: req.auth_user.id,
         });
 
         return res.status(201).json(data);
